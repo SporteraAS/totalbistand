@@ -7,6 +7,7 @@
   <meta name="description" content="Bemanningstjenester innen skole, barnehage, institusjoner og helse- og omsorgstjenester." />
   <link rel="canonical" href="https://totalbistand.no/bemanning/" />
   <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <script>document.documentElement.classList.add("js-loaded");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -14,110 +15,274 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #edeae4; --bg2: #e4e0d9; --dark: #1c1c26; --accent: #b87455;
-      --text: #2a2a35; --muted: #6b6b72; --white: #faf9f7; --border: #d0ccc4;
+      --accent2: #8fa89a; --text: #2a2a35; --muted: #6b6b72; --white: #faf9f7; --border: #d0ccc4;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-    /* NAV */
-    nav { position:sticky; top:0; z-index:200; background:rgba(237,234,228,0.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:0.6rem 5%; display:flex; flex-direction:column; align-items:flex-start; gap:0.15rem; }
-    .logo { display:flex; align-items:center; text-decoration:none; }
-    .logo img { height:26px; width:auto; display:block; }
-    .logo-fb { font-family:'Outfit',sans-serif; font-weight:500; font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text); display:none; }
-    .back { display:flex; align-items:center; gap:0.4rem; background:none; border:none; cursor:pointer; font-family:'Outfit',sans-serif; font-size:0.76rem; color:var(--muted); transition:color 0.2s; padding:0; font-weight:400; text-decoration:none; }
-    .back:hover { color:var(--accent); }
-    .back svg { width:13px; height:13px; }
+    /* TOPBAR */
+    .topbar { background: var(--accent); padding: 0.65rem 5%; display: flex; justify-content: flex-end; align-items: center; gap: 2rem; font-size: 0.85rem; }
+    .topbar a { display:flex; align-items:center; gap:0.5rem; color:#fff; text-decoration:none; transition:color 0.2s; font-weight:500; letter-spacing:0.02em; }
+    .topbar a:hover { color:#fff; }
+    .topbar a strong { color:#fff; font-weight:700; }
+    .topbar svg { width:14px; height:14px; flex-shrink:0; }
+    .pulse-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#fff; margin-right:0.4rem; animation:pulse 1.8s ease-in-out infinite; flex-shrink:0; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
+    .pulse-number { animation:pulseText 1.8s ease-in-out infinite; display:inline-block; }
+    @keyframes pulseText { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
 
-    /* HERO */
-    .hero { display:grid; grid-template-columns:1fr 580px; min-height:420px; }
-    .hero-text { padding:2.5rem 8% 2.5rem 5%; display:flex; flex-direction:column; justify-content:center; background:var(--bg); }
-    .num { font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--border); font-weight:600; line-height:1; margin-bottom:0.4rem; display:block; }
+    /* NAV */
+    nav a, nav a:visited, nav a:hover, nav a:active { text-decoration:none !important; border-bottom:none !important; box-shadow:none !important; }
+    nav { position:sticky; top:0; z-index:200; background:rgba(237,234,228,0.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); height:62px; padding:0 5%; display:flex; align-items:center; justify-content:space-between; }
+    .logo { display:flex; align-items:center; text-decoration:none; }
+    .logo img { height:26px; width:auto; display:block; margin-top:2px; }
+    .logo-fb { font-family:'Outfit',sans-serif; font-weight:500; font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text); display:none; }
+    .nav-links { display:flex; gap:2rem; list-style:none; align-items:center; padding:0; margin:0; }
+    .nav-links li { list-style:none; }
+    .nav-links li::marker { display:none; content:""; }
+    .nav-links a, .nav-links a:hover, .nav-links a:visited { text-decoration:none !important; border-bottom:none !important; }
+    .nav-links li::before { display:none; }
+    .nav-links a { color:var(--text); text-decoration:none !important; border-bottom:none !important; font-size:0.85rem; font-weight:400; transition:opacity 0.2s; }
+    .nav-links a:hover { opacity:0.45; }
+    .nav-links a.nav-active { color:var(--accent) !important; font-weight:500; opacity:1 !important; }
+    .nav-cta { background:var(--dark)!important; color:var(--white)!important; padding:0.48rem 1.2rem!important; opacity:1!important; transition:background 0.2s!important; }
+    .nav-cta:hover { background:var(--accent)!important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--text); transition:all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; inset:0; z-index:190; background:var(--bg); flex-direction:column; align-items:center; justify-content:center; gap:2.5rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:500; color:var(--dark); text-decoration:none; }
+    .mobile-menu a:hover { color:var(--accent); }
+    .mobile-menu .mob-cta { font-family:'Outfit',sans-serif!important; font-size:0.9rem!important; background:var(--dark); color:var(--white)!important; padding:1rem 2.5rem; }
+
+    /* DROPDOWN */
+    .nav-dropdown { position:relative; }
+    .nav-dropdown > a { display:flex; align-items:center; gap:0.3rem; }
+    .nav-dropdown > a svg { width:11px; height:11px; transition:transform 0.2s; }
+    .nav-dropdown.open > a svg { transform:rotate(180deg); }
+    .dropdown-menu { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:var(--white); border:1px solid var(--border); min-width:190px; box-shadow:0 4px 20px rgba(0,0,0,0.08); z-index:300; }
+    .nav-dropdown.open .dropdown-menu { display:block; }
+    .dropdown-menu a { display:block; padding:0.65rem 1rem; font-size:0.8rem; color:var(--text); text-decoration:none; border-bottom:1px solid var(--border); transition:background 0.15s; white-space:nowrap; opacity:1!important; }
+    .dropdown-menu a:last-child { border-bottom:none; }
+    .dropdown-menu a:hover { background:var(--bg); color:var(--accent); opacity:1!important; }
+
+    /* MOBIL TJENESTER */
+    .mob-tjenester-toggle { display:flex; align-items:center; gap:0.5rem; font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:500; color:var(--dark); background:none; border:none; cursor:pointer; }
+    .mob-tjenester-toggle svg { width:20px; height:20px; transition:transform 0.3s; }
+    .mob-tjenester-toggle.open svg { transform:rotate(180deg); }
+    .mob-tjenester-links { display:none; flex-direction:column; gap:0.6rem; align-items:center; }
+    .mob-tjenester-links.open { display:flex; }
+    .mob-tjenester-links a { font-family:'Outfit',sans-serif; font-size:1rem; color:var(--muted); text-decoration:none; }
+    .mob-tjenester-links a:hover { color:var(--accent); }
+
+    /* HERO - tjenesteside */
+    .svc-hero { display:grid; grid-template-columns:1fr 680px; min-height:360px; max-height:360px; }
+    .svc-hero-text { padding:1.4rem 8% 3rem 5%; display:flex; flex-direction:column; justify-content:flex-start; background:var(--bg); }
+    .num { font-family:'Cormorant Garamond',serif; font-size:3rem; color:var(--border); font-weight:600; line-height:1; margin-bottom:0.4rem; display:block; margin-top:2rem; }
     h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,3vw,2.8rem); font-weight:500; line-height:1.1; color:var(--accent); }
     .lead { font-size:0.88rem; color:var(--muted); max-width:420px; line-height:1.8; font-weight:300; margin-top:0.8rem; }
-    .divider { width:32px; height:1px; background:var(--accent); margin:1.5rem 0; }
-    .hero-img { overflow:hidden; position:relative; }
-    .hero-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .divider { width:32px; height:1px; background:var(--accent); margin:1.5rem 0 0; }
+    .svc-hero-img { overflow:hidden; position:relative; }
+    .svc-hero-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
 
-    /* BODY */
-    .body { padding:4rem 5%; display:grid; grid-template-columns:1fr 1fr; gap:4rem; background:var(--white); }
+    /* INNHOLD */
+    .body { padding:3rem 5% 2.5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; background:var(--white); }
     .body h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; color:var(--accent); margin-bottom:0.8rem; }
     .body p { color:var(--muted); line-height:1.85; font-size:0.9rem; font-weight:300; margin-bottom:0.85rem; }
     ul { list-style:none; padding:0; }
-    ul li { color:var(--muted); font-size:0.88rem; font-weight:300; padding:0.5rem 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.7rem; }
-    ul li::before { content:''; display:block; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+    .body ul li { color:var(--muted); font-size:0.88rem; font-weight:300; padding:0.5rem 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:0.7rem; }
+    .body ul li::before { content:''; display:block; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; }
 
     /* CTA */
-    .cta-bar { padding:3.5rem 5%; background:var(--bg2); display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .cta-bar { padding:2.5rem 5%; background:var(--white); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
     .cta-bar p { font-family:'Cormorant Garamond',serif; font-size:clamp(1.3rem,2vw,1.8rem); font-weight:500; color:var(--dark); max-width:480px; }
     .btn { display:inline-block; padding:0.8rem 1.8rem; text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:0.05em; background:var(--dark); color:var(--white); border:none; cursor:pointer; font-family:'Outfit',sans-serif; transition:background 0.25s; }
     .btn:hover { background:var(--accent); }
 
-    /* REVEAL */
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-    .reveal.d1 { transition-delay:0.1s; }
-    .reveal.d2 { transition-delay:0.2s; }
+    /* FOOTER */
+    footer { background:var(--bg); border-top:1px solid var(--dark); padding:2rem 5% 1.4rem; display:flex; flex-direction:column; }
+    .footer-main { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:2rem; padding-bottom:1.2rem; }
+    .footer-left { display:flex; flex-direction:column; align-items:flex-start; gap:0.25rem; }
+    .footer-left a { font-size:0.76rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-left a:hover { color:var(--text); }
+    .footer-logo { display:flex; justify-content:center; align-items:center; }
+    .footer-logo img { height:26px; width:auto; display:block; }
+    .footer-logo .logo-fb { font-family:'Outfit',sans-serif; font-weight:500; font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text); display:none; }
+    .footer-right { display:flex; flex-direction:column; align-items:flex-end; gap:0.25rem; }
+    .footer-right a { font-size:0.76rem; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+    .footer-right a:hover { color:var(--text); }
+    .footer-mobile-links { display:none; }
+    .footer-copy { font-size:0.72rem; color:var(--muted); text-align:center; border-top:1px solid var(--border); padding-top:1rem; }
 
+    /* REVEAL */
+    html.js-loaded .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+    html.js-loaded .reveal.visible { opacity:1; transform:translateY(0); }
+    html.js-loaded .reveal.d1 { transition-delay:0.1s; }
+    html.js-loaded .reveal.d2 { transition-delay:0.2s; }
+
+    /* MOBIL */
     @media (max-width: 860px) {
-      .hero { grid-template-columns:1fr; }
-      .hero-img { height:55vw; min-height:220px; position:relative; }
-      .hero-img img { position:absolute; }
+      .topbar { justify-content:center; flex-wrap:wrap; gap:0.8rem; }
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .svc-hero { display:flex; flex-direction:column; max-height:none; min-height:auto; }
+      .svc-hero-img { height:55vw; min-height:200px; max-height:260px; position:relative; flex-shrink:0; }
+      .svc-hero-img img { position:absolute; }
+      .svc-hero-text { padding:1.2rem 5% 2rem; }
+      .num { margin-top:0; font-size:2rem; }
       .body { grid-template-columns:1fr; gap:2rem; padding:2.5rem 5%; }
       .cta-bar { padding:2.5rem 5%; }
+      .footer-main { grid-template-columns:1fr; justify-items:center; gap:0; }
+      .footer-left { display:none; }
+      .footer-right { display:none; }
+      .footer-mobile-links { display:flex !important; flex-direction:column; align-items:center; gap:0.3rem; padding:0.8rem 0 1.2rem; }
+      .footer-mobile-links a { font-size:0.76rem; color:var(--muted); text-decoration:none; }
+      .footer-copy { text-align:center; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="logo" href="https://totalbistand.no/">
+<div class="topbar">
+  <a href="tel:+4799475001">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+    <span class="pulse-dot"></span><strong>Døgnåpen vakttelefon:</strong>&nbsp;<span class="pulse-number">(+47) 994 75 001</span>
+  </a>
+</div>
+
+<nav style="text-decoration:none;">
+  <a href="https://totalbistand.no/" class="logo">
     <img src="../TotalBistand_ny.png" alt="TotalBistand" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
     <span class="logo-fb">Totalbistand</span>
   </a>
-  <a class="back" href="https://totalbistand.no/#tjenester">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
-    Tilbake
-  </a>
+  <ul class="nav-links">
+    <li><a href="https://totalbistand.no/#om-oss" style="text-decoration:none;">Om oss</a></li>
+    <li><a href="/bemanning/" style="text-decoration:none;" class="nav-active">Bemanning</a></li>
+    <li class="nav-dropdown">
+      <a href="https://totalbistand.no/#tjenester" style="text-decoration:none;">Tjenester <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+      <div class="dropdown-menu">
+        <a href="/bemanning/">Bemanning og rekruttering</a>
+        <a href="/avlastning/">Hjelpetiltak, avlastning og veiledning</a>
+        <a href="/skolearena/">Alternativ skolearena</a>
+      </div>
+    </li>
+    <li><a style="text-decoration:none;" href="https://totalbistand.no/?emne=Bemanning%20og%20rekruttering#kontakt" class="nav-cta">Kontakt oss</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Meny"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://totalbistand.no/#om-oss" class="mob-link">Om oss</a>
+  <a href="/bemanning/" class="mob-link">Bemanning</a>
+  <button class="mob-tjenester-toggle" id="mobTjenesterToggle">Tjenester <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+  <div class="mob-tjenester-links" id="mobTjenesterLinks">
+    <a href="/bemanning/" class="mob-link">Bemanning og rekruttering</a>
+    <a href="/avlastning/" class="mob-link">Hjelpetiltak, avlastning og veiledning</a>
+    <a href="/skolearena/" class="mob-link">Alternativ skolearena</a>
+  </div>
+  <a href="https://totalbistand.no/?emne=Bemanning%20og%20rekruttering#kontakt" class="mob-link mob-cta">Kontakt oss</a>
+</div>
 
-<div class="hero">
-  <div class="hero-text">
+<div class="svc-hero">
+  <div class="svc-hero-text">
     <span class="num">01</span>
     <h1>Bemanning og rekruttering</h1>
-    <p class="lead">Bemanningstjenester innen skole, barnehage, institusjoner og helse- og omsorgstjenester.</p>
+    <p class="lead">Skreddersydde bemanningsløsninger for deg.<br>TotalBistand leverer personell og tjenester innen oppvekst-, helse- og omsorgssektoren. Vi bistår skoler, barnehager, barnevern og kommunale tjenester med kvalifiserte medarbeidere og fleksible løsninger.</p>
     <div class="divider"></div>
   </div>
-  <div class="hero-img">
-    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&auto=format&fit=crop&q=75" alt="Bemanning og rekruttering" />
+  <div class="svc-hero-img">
+    <img src="https://images.pexels.com/photos/34778969/pexels-photo-34778969.jpeg" alt="Bemanning og rekruttering" />
   </div>
 </div>
 
 <div class="body reveal">
   <div>
     <h2>Skreddersydd bemanning</h2>
-    <p>TotalBistand leverer kvalifisert personell til skoler, barnehager, institusjoner og helse- og omsorgstjenester. Våre medarbeidere har relevant faglig kompetanse og erfaring, og bidrar til stabile, trygge og faglig gode tjenester.</p>
-<p>Gjennom systematisk rekruttering, kvalitetssikring og tett oppfølging sørger vi for at oppdragsgivere får personell som møter behovene i tjenestene.</p>
-<p>Vi tilbyr fleksible bemanningsløsninger og kan bistå både ved planlagte behov og ved akutte situasjoner. Målet er å være en pålitelig samarbeidspartner som bidrar til kontinuitet og kvalitet i tjenestene.</p>
+    <p>TotalBistand leverer kvalifisert personell til skoler, barnehager, institusjoner og helse- og omsorgstjenester. Våre medarbeidere har relevant faglig kompetanse og erfaring, og bidrar til stabile, trygge og faglig gode tjenester.</p><p>Gjennom systematisk rekruttering, kvalitetssikring og tett oppfølging sørger vi for at oppdragsgivere får personell som møter behovene i tjenestene.</p><p>Vi tilbyr fleksible bemanningsløsninger og kan bistå både ved planlagte behov og ved akutte situasjoner. Målet er å være en pålitelig samarbeidspartner som bidrar til kontinuitet og kvalitet i tjenestene.</p>
   </div>
   <div>
     <h2>Dette tilbyr vi</h2>
-    <ul>
-      <li>Bemanning til skoler og barnehager</li>
-      <li>Bemanning til institusjoner</li>
-      <li>Helse- og omsorgstjenester</li>
-      <li>Fleksible og akutte løsninger</li>
-      <li>Systematisk kvalitetssikring</li>
-    </ul>
+    <ul><li>Bemanning til skoler og barnehager</li><li>Bemanning til institusjoner</li><li>Helse- og omsorgstjenester</li><li>Fleksible og akutte løsninger</li><li>Systematisk kvalitetssikring</li></ul>
   </div>
 </div>
 
 <div class="cta-bar reveal d1">
   <p>Ønsker du å vite mer eller komme i gang?</p>
-  <a class="btn" href="https://totalbistand.no/#kontakt">Ta kontakt</a>
+  <a class="btn" href="https://totalbistand.no/?emne=Bemanning%20og%20rekruttering#kontakt">Ta kontakt</a>
 </div>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-left">
+      <a id="footer-email" href="#">#</a>
+      <a href="tel:+4799475001">+47 994 75 001</a>
+    </div>
+    <div class="footer-logo">
+      <img src="../TotalBistand_ny.png" alt="TotalBistand" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+      <span class="logo-fb">Totalbistand</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://maps.google.com/?q=Tuneveien+87,+1712+Gr%C3%A5lum" target="_blank" rel="noopener">Tuneveien 87, 1712 Grålum</a>
+      <a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=927603012" target="_blank" rel="noopener">Org.nr: 927 603 012</a>
+    </div>
+  </div>
+  <div class="footer-mobile-links">
+    <a id="footer-email-mob" href="#">#</a>
+    <a href="tel:+4799475001">+47 994 75 001</a>
+    <a href="https://maps.google.com/?q=Tuneveien+87,+1712+Gr%C3%A5lum" target="_blank" rel="noopener">Tuneveien 87, 1712 Grålum</a>
+    <a href="https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=927603012" target="_blank" rel="noopener">Org.nr: 927 603 012</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Totalbistand AS. Alle rettigheter forbeholdt.</p>
+</footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Email
+  var e = ['mgo','totalbistand.no'].join('@');
+  var fe = document.getElementById('footer-email');
+  var fem = document.getElementById('footer-email-mob');
+  if(fe){ fe.href='mailto:'+e; fe.textContent=e; }
+  if(fem){ fem.href='mailto:'+e; fem.textContent=e; }
+
+  // Hamburger
+  var ham = document.getElementById('hamburger');
+  var mob = document.getElementById('mobileMenu');
+  if(ham) {
+    ham.addEventListener('click', function() {
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+      document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+    });
+  }
+  document.querySelectorAll('.mob-link').forEach(function(l) {
+    l.addEventListener('click', function() {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Mobil tjenester accordion
+  var mobToggle = document.getElementById('mobTjenesterToggle');
+  var mobLinks = document.getElementById('mobTjenesterLinks');
+  if(mobToggle) {
+    mobToggle.addEventListener('click', function() {
+      mobToggle.classList.toggle('open');
+      mobLinks.classList.toggle('open');
+    });
+  }
+
+  // PC dropdown
+  var navDrop = document.querySelector('.nav-dropdown');
+  if(navDrop) {
+    navDrop.addEventListener('mouseenter', function() { navDrop.classList.add('open'); });
+    navDrop.addEventListener('mouseleave', function() { navDrop.classList.remove('open'); });
+  }
+
+  // Reveal
   var els = document.querySelectorAll('.reveal');
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -129,6 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (r.top < window.innerHeight) { el.classList.add('visible'); }
     else { obs.observe(el); }
   });
+
 });
 </script>
 </body>
