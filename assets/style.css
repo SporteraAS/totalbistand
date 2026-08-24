@@ -151,6 +151,7 @@ section { scroll-margin-top: 84px; }
 .trust { background: var(--navy); color: rgba(255,255,255,.85); }
 .trust .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; justify-content: center; padding-block: 1rem; font-size: .85rem; }
 .trust span { display: inline-flex; align-items: center; gap: .55rem; }
+.trust span { display: inline-flex; align-items: center; gap: .55rem; }
 .trust svg { width: 16px; height: 16px; color: #63c4d2; flex-shrink: 0; }
 
 /* ---------- Om oss ---------- */
@@ -273,6 +274,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
 
 /* prosess-steg (makulering) */
 .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2rem; }
+.steps-4 { grid-template-columns: repeat(4, 1fr); margin-top: 1.5rem; }
 .step { text-align: center; }
 .step .ring { width: 62px; height: 62px; margin: 0 auto .8rem; border: 1.5px solid var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--teal); background: var(--white); }
 .step .ring svg { width: 26px; height: 26px; }
@@ -290,14 +292,6 @@ footer.site ul { list-style: none; display: flex; flex-direction: column; gap: .
 footer.site a { color: rgba(255,255,255,.72); text-decoration: none; transition: color .18s; }
 footer.site a:hover { color: #63c4d2; }
 .foot-bottom { border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.3rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .78rem; color: rgba(255,255,255,.55); }
-
-/* ---------- Mobil handlingslinje ---------- */
-.actionbar { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 250; background: var(--navy); border-top: 1px solid rgba(255,255,255,.12); transform: translateY(110%); transition: transform .3s ease; padding-bottom: env(safe-area-inset-bottom); }
-.actionbar.show { transform: translateY(0); }
-.actionbar a { flex: 1; display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .95rem .5rem; color: #fff; text-decoration: none; font-size: .87rem; font-weight: 600; }
-.actionbar a + a { border-left: 1px solid rgba(255,255,255,.12); }
-.actionbar a.primary { background: var(--teal); }
-.actionbar svg { width: 16px; height: 16px; }
 
 /* ---------- Til toppen ---------- */
 .totop { position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 240; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .25s, transform .25s, background .2s; }
@@ -318,7 +312,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
 @media (max-width: 1024px) {
   .seg-grid { grid-template-columns: repeat(2, 1fr); }
   .svc-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: repeat(3, 1fr); row-gap: 1.8rem; }
+  .steps, .steps-4 { grid-template-columns: repeat(3, 1fr); row-gap: 1.8rem; }
 }
 
 @media (max-width: 900px) {
@@ -338,15 +332,19 @@ html.js .reveal.d3 { transition-delay: .24s; }
   .foot-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .foot-brand { grid-column: 1 / -1; }
 
-  .actionbar { display: flex; }
-  body { padding-bottom: 56px; }
-  .totop { bottom: 4.5rem; }
   .cta-band .wrap { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 640px) {
+  /* Fire punkter under hverandre tar for mye plass, legg dem i to kolonner */
+  .trust .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1rem; font-size: .78rem; }
+  .trust span { align-items: flex-start; }
+  .trust svg { margin-top: 2px; }
 }
 
 @media (max-width: 560px) {
   .seg-grid { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: repeat(2, 1fr); }
+  .steps, .steps-4 { grid-template-columns: repeat(2, 1fr); }
   form .row { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
   .topbar .wrap { justify-content: center; font-size: .78rem; }
@@ -365,7 +363,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
 
 /* ---------- Utskrift ---------- */
 @media print {
-  nav.site, .topbar, .actionbar, .totop, #progress, .mobilemenu, .map { display: none !important; }
+  nav.site, .topbar, .totop, #progress, .mobilemenu, .map { display: none !important; }
   body { background: #fff; padding: 0; }
   .hero, .page-hero, .cta-band, footer.site { background: #fff !important; color: #000 !important; }
   .hero h1, .page-hero h1, .cta-band h2 { color: #000 !important; }
