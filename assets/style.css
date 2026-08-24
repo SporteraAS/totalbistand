@@ -340,6 +340,13 @@ footer.site h4 { color: #fff; font-size: .78rem; letter-spacing: .14em; text-tra
 footer.site ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
 footer.site a { color: rgba(255,255,255,.72); text-decoration: none; transition: color .18s; }
 footer.site a:hover { color: #63c4d2; }
+.foot-omrade { border-top: 1px solid rgba(255,255,255,.14); padding: 1.3rem 0 .2rem; }
+.foot-omrade h4 { margin-bottom: .5rem; }
+.foot-omrade p { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.9; }
+
+/* Dekningsomraade i broedteksten paa tjenestesidene */
+.omrade { font-size: .88rem; color: var(--muted); border-left: 2px solid var(--teal); padding-left: .9rem; margin-top: 1.4rem; }
+
 .foot-bottom { border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.3rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .78rem; color: rgba(255,255,255,.55); }
 
 /* ---------- Til toppen ---------- */
