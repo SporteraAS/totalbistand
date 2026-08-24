@@ -207,6 +207,7 @@ section { scroll-margin-top: 84px; }
 
 /* ---------- CTA-banner ---------- */
 .cta-band { background: var(--slate); color: #fff; }
+.flow + .cta-band { border-top: 1px solid rgba(255,255,255,.09); }
 .cta-band .wrap { padding-block: clamp(2.5rem, 5vw, 3.8rem); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
 .cta-band h2 { color: #fff; font-size: clamp(1.35rem, 2.4vw, 1.9rem); max-width: 22ch; margin-bottom: .5rem; }
 .cta-band p { color: rgba(255,255,255,.72); font-size: .93rem; max-width: 46ch; }
@@ -273,7 +274,7 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
 .panel { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: clamp(1.5rem, 3vw, 2.2rem); }
 
 /* ---------- Sikker dokumenthaandtering: helgaaende stripe ---------- */
-.flow { background: var(--navy); color: #fff; padding-block: clamp(3rem, 6vw, 4.8rem); }
+.flow { background: var(--slate); color: #fff; padding-block: clamp(3rem, 6vw, 4.8rem); }
 .flow .eyebrow { color: #63c4d2; }
 .flow .eyebrow::before { background: #63c4d2; }
 .flow-title { color: #fff; text-align: center; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: .7rem; }
@@ -296,11 +297,11 @@ html.js .flow-steps.on .flow-step { opacity: 1; transform: none; }
 
 .flow-icon {
   width: 92px; height: 92px; margin: 0 auto 1.1rem; display: flex; align-items: center; justify-content: center;
-  border: 2px solid rgba(99,196,210,.4); border-radius: 50%; background: var(--navy);
+  border: 2px solid rgba(99,196,210,.4); border-radius: 50%; background: var(--slate);
   position: relative; z-index: 1; transition: border-color .25s, transform .25s, background .25s;
 }
 .flow-icon img { width: 52px; height: 52px; object-fit: contain; }
-.flow-step:hover .flow-icon { border-color: #63c4d2; transform: translateY(-5px); background: #16305a; }
+.flow-step:hover .flow-icon { border-color: #63c4d2; transform: translateY(-5px); background: #223541; }
 
 .flow-step strong { display: block; font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; margin-bottom: .3rem; color: #fff; }
 .flow-step > span:last-child { display: block; font-size: .81rem; color: rgba(255,255,255,.6); line-height: 1.5; }
