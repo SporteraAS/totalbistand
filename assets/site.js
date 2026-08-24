@@ -121,6 +121,26 @@
       });
     }
 
+    /* --- Prosesstripa: trinnene kommer etter tur naar den rulles inn --- */
+    var flow = document.querySelector('.flow-steps');
+    if (flow) {
+      if (reduce || !('IntersectionObserver' in window)) {
+        flow.classList.add('on');
+      } else {
+        var r = flow.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          flow.classList.add('on');
+        } else {
+          var flowObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (en.isIntersecting) { flow.classList.add('on'); flowObs.disconnect(); }
+            });
+          }, { threshold: 0.25 });
+          flowObs.observe(flow);
+        }
+      }
+    }
+
     /* --- Scrollspy: marker aktiv seksjon i menyen (kun forsiden) --- */
     var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
     if (spyLinks.length && 'IntersectionObserver' in window) {

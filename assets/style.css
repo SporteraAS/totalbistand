@@ -272,11 +272,51 @@ form .row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
 .ticks svg { width: 17px; height: 17px; color: var(--teal); flex-shrink: 0; margin-top: 4px; }
 .panel { background: var(--white); border: 1px solid var(--border); border-radius: var(--r); padding: clamp(1.5rem, 3vw, 2.2rem); }
 
-/* Prosessgrafikk hentet fra flyeren. Rulles vannrett paa smal skjerm,
-   ellers blir etikettene uleselige. */
-.flowbox { background: var(--navy); border-radius: var(--r); padding: clamp(1.4rem,3vw,2.4rem) clamp(1rem,2.5vw,2rem); overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.flowbox img { width: 100%; min-width: 620px; height: auto; display: block; margin: 0 auto; }
-.flowbox-note { text-align: center; color: var(--muted); font-size: .88rem; margin-top: 1rem; }
+/* ---------- Sikker dokumenthaandtering: helgaaende stripe ---------- */
+.flow { background: var(--navy); color: #fff; padding-block: clamp(3rem, 6vw, 4.8rem); }
+.flow .eyebrow { color: #63c4d2; }
+.flow .eyebrow::before { background: #63c4d2; }
+.flow-title { color: #fff; text-align: center; font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: .7rem; }
+.flow-lead { text-align: center; color: rgba(255,255,255,.68); font-size: .95rem; max-width: 52ch; margin: 0 auto 3rem; }
+
+.flow-steps { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; position: relative; padding: 0; }
+
+/* Linja som binder trinnene sammen, tegnes fra venstre naar stripa rulles inn */
+.flow-steps::before {
+  content: ''; position: absolute; top: 46px; left: 10%; right: 10%; height: 2px;
+  background: rgba(99,196,210,.35); transform-origin: left;
+  transition: transform 1.1s cubic-bezier(.4,0,.2,1);
+}
+html.js .flow-steps::before { transform: scaleX(0); }
+html.js .flow-steps.on::before { transform: scaleX(1); }
+
+.flow-step { text-align: center; position: relative; }
+html.js .flow-step { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i) * 130ms); }
+html.js .flow-steps.on .flow-step { opacity: 1; transform: none; }
+
+.flow-icon {
+  width: 92px; height: 92px; margin: 0 auto 1.1rem; display: flex; align-items: center; justify-content: center;
+  border: 2px solid rgba(99,196,210,.4); border-radius: 50%; background: var(--navy);
+  position: relative; z-index: 1; transition: border-color .25s, transform .25s, background .25s;
+}
+.flow-icon img { width: 52px; height: 52px; object-fit: contain; }
+.flow-step:hover .flow-icon { border-color: #63c4d2; transform: translateY(-5px); background: #16305a; }
+
+.flow-step strong { display: block; font-family: 'Montserrat', sans-serif; font-size: .92rem; font-weight: 600; margin-bottom: .3rem; color: #fff; }
+.flow-step > span:last-child { display: block; font-size: .81rem; color: rgba(255,255,255,.6); line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .flow-steps { grid-template-columns: repeat(2, 1fr); gap: 2.2rem 1.2rem; }
+  .flow-steps::before { display: none; }
+  .flow-lead { margin-bottom: 2.2rem; }
+  .flow-icon { width: 76px; height: 76px; margin-bottom: .9rem; }
+  .flow-icon img { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .flow-step { opacity: 1; transform: none; transition: none; }
+  html.js .flow-steps::before { transform: scaleX(1); transition: none; }
+}
 
 /* prosess-steg (makulering) */
 .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2rem; }

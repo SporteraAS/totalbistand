@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="no" class="js">
+<html lang="no">
 <head>
 <meta charset="UTF-8" />
+<script>document.documentElement.className="js";</script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Makulering av sensitive dokumenter i Sarpsborg – TotalBistand</title>
 <meta name="description" content="Sikker makulering av sensitive dokumenter. Plombert sikkerhetsbeholder, trygg henting av autorisert personell og resirkulering etterpå. Fast eller ved behov." />
@@ -20,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/style.css?v=4" />
+<link rel="stylesheet" href="/assets/style.css?v=6" />
 </head>
 <body>
 
@@ -114,13 +115,39 @@
   </div>
 </section>
 
-<section class="segments" style="padding-top:0">
+<!-- SIKKER DOKUMENTHÅNDTERING -->
+<section class="flow">
   <div class="wrap">
-    <div class="flowbox reveal">
-      <img src="/bilder/dokumenthandtering.png" width="1400" height="243" loading="lazy"
-           alt="Sikker dokumenthåndtering i fem trinn: 1. Låst beholder, 2. Autorisert personell, 3. Sikker frakt, 4. Makulering og miljøhåndtering, 5. Resirkulering." />
-    </div>
-    <p class="flowbox-note reveal">Fra papiret havner i beholderen til det er resirkulert, uten at uvedkommende er innom.</p>
+    <p class="eyebrow center reveal">Slik foregår det</p>
+    <h2 class="flow-title reveal">Sikker dokumenthåndtering</h2>
+    <p class="flow-lead reveal">Fra papiret havner i beholderen til det er resirkulert, uten at uvedkommende er innom.</p>
+    <ol class="flow-steps">
+        <li class="flow-step" style="--i:0">
+          <span class="flow-icon"><img src="/bilder/beholder.png" alt="" width="240" height="240" loading="lazy" /></span>
+          <strong>1. Låst beholder</strong>
+          <span>Plombert beholder står hos dere</span>
+        </li>
+        <li class="flow-step" style="--i:1">
+          <span class="flow-icon"><img src="/bilder/personell.png" alt="" width="240" height="240" loading="lazy" /></span>
+          <strong>2. Autorisert personell</strong>
+          <span>Kun våre folk håndterer den</span>
+        </li>
+        <li class="flow-step" style="--i:2">
+          <span class="flow-icon"><img src="/bilder/frakt.png" alt="" width="240" height="240" loading="lazy" /></span>
+          <strong>3. Sikker frakt</strong>
+          <span>Direkte til makulering</span>
+        </li>
+        <li class="flow-step" style="--i:3">
+          <span class="flow-icon"><img src="/bilder/makulering.png" alt="" width="240" height="240" loading="lazy" /></span>
+          <strong>4. Makulering</strong>
+          <span>Makulering og miljøhåndtering</span>
+        </li>
+        <li class="flow-step" style="--i:4">
+          <span class="flow-icon"><img src="/bilder/resirkulering.png" alt="" width="240" height="240" loading="lazy" /></span>
+          <strong>5. Resirkulering</strong>
+          <span>Papiret gjenvinnes</span>
+        </li>
+    </ol>
   </div>
 </section>
 
@@ -174,6 +201,6 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="/assets/site.js?v=4" defer></script>
+<script src="/assets/site.js?v=6" defer></script>
 </body>
 </html>
