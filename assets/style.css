@@ -189,7 +189,7 @@ section { scroll-margin-top: 84px; }
 .svc:hover::before { transform: scaleY(1); }
 .svc-icon { width: 44px; height: 44px; color: var(--teal); margin-bottom: 1.2rem; }
 .svc-icon svg { width: 100%; height: 100%; }
-.svc h3 { font-size: 1.08rem; margin-bottom: .6rem; text-wrap: balance; }
+.svc h3 { font-size: 1.08rem; margin-bottom: .6rem; text-wrap: balance; overflow-wrap: anywhere; hyphens: auto; }
 .svc p { color: var(--muted); font-size: .89rem; line-height: 1.75; flex-grow: 1; }
 .svc-more { margin-top: 1.4rem; display: inline-flex; align-items: center; gap: .45rem; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--teal); transition: gap .2s; }
 .svc:hover .svc-more { gap: .8rem; }
@@ -399,6 +399,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
 }
 
 @media (max-width: 560px) {
+  .svc-grid { grid-template-columns: 1fr; }
   /* To kolonner ogsaa paa smal skjerm, med strammere innmat saa de
      lange navnene faar plass */
   .seg { padding: 1rem .75rem; gap: .55rem; }
