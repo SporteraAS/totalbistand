@@ -176,7 +176,7 @@ section { scroll-margin-top: 84px; }
 .services { background: var(--white); padding-block: clamp(3.5rem, 7vw, 6rem); border-block: 1px solid var(--border); }
 .svc-head { max-width: 620px; margin-bottom: 2.5rem; }
 .svc-head h2 { margin-bottom: .8rem; }
-.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
 .svc {
   display: flex; flex-direction: column;
   background: var(--paper); border: 1px solid var(--border); border-radius: var(--r);
@@ -367,7 +367,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
    ========================================================================== */
 @media (max-width: 1024px) {
   .seg-grid { grid-template-columns: repeat(2, 1fr); }
-  .svc-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
   .steps, .steps-4 { grid-template-columns: repeat(3, 1fr); row-gap: 1.8rem; }
 }
 
