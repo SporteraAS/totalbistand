@@ -135,8 +135,11 @@
       }
       car.querySelector('.car-prev').addEventListener('click', function () { show(cur - 1); restart(); });
       car.querySelector('.car-next').addEventListener('click', function () { show(cur + 1); restart(); });
-      car.addEventListener('mouseenter', function () { clearInterval(timer); });
-      car.addEventListener('mouseleave', restart);
+      // Pause ved musepeker, men ikke paa mobil der et trykk ellers stopper byttet
+      if (window.matchMedia('(hover: hover)').matches) {
+        car.addEventListener('mouseenter', function () { clearInterval(timer); });
+        car.addEventListener('mouseleave', restart);
+      }
       // Sveip paa mobil
       var x0 = null;
       car.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });

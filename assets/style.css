@@ -147,27 +147,23 @@ section { scroll-margin-top: 84px; }
 .hero-img { position: relative; overflow: hidden; background: var(--slate-2); min-height: 320px; }
 .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 
-/* bildekarusell oeverst paa forsiden */
-.carousel { position: relative; background: var(--slate); overflow: hidden; }
-.car-track { position: relative; aspect-ratio: 1600 / 726; max-height: 72vh; width: 100%; }
-.car-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+/* bildekarusell i hero paa forsiden (fyller bildekolonnen) */
+.carousel { background: var(--slate-2); }
+.car-track { position: absolute; inset: 0; }
+.car-slide { position: absolute; inset: 0; margin: 0; opacity: 0; transition: opacity .8s ease; }
 .car-slide.active { opacity: 1; }
-.car-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+.car-slide img { position: static; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+/* restaurantbildet: flytt utsnittet mot hoeyre saa begge personene kommer med */
+.car-slide img.pos-hoyre { object-position: 75% 30%; }
 .car-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(16,38,66,.55); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s; z-index: 2; }
 .car-btn:hover, .car-btn:focus-visible { background: var(--teal); }
 .car-btn svg { width: 22px; height: 22px; }
-.car-prev { left: clamp(.6rem, 2vw, 1.5rem); }
-.car-next { right: clamp(.6rem, 2vw, 1.5rem); }
+.car-prev { left: clamp(.6rem, 2vw, 1.2rem); }
+.car-next { right: clamp(.6rem, 2vw, 1.2rem); }
 .car-dots { position: absolute; left: 0; right: 0; bottom: clamp(.6rem, 2vw, 1.2rem); display: flex; justify-content: center; gap: .55rem; z-index: 2; }
-.car-dots button { width: 11px; height: 11px; border-radius: 50%; border: 2px solid #fff; background: transparent; cursor: pointer; padding: 0; }
+.car-dots button { width: 11px; height: 11px; border-radius: 50%; border: 2px solid #fff; background: transparent; cursor: pointer; padding: 0; box-shadow: 0 0 4px rgba(0,0,0,.35); }
 .car-dots button[aria-current="true"] { background: #fff; }
 html:not(.js) .car-btn, html:not(.js) .car-dots { display: none; }
-
-/* hero uten bilde (forsiden, under karusellen) */
-.hero.hero-text { grid-template-columns: 1fr; min-height: 0; }
-.hero.hero-text .hero-copy { max-width: var(--maxw); margin: 0 auto; width: 100%; padding-left: var(--pad); padding-right: var(--pad); }
-.hero.hero-text .hero-copy p { max-width: 68ch; }
-.hero.hero-text h1 { max-width: none; }
 
 /* trygghetsstripe under hero */
 .trust { background: var(--navy); color: rgba(255,255,255,.85); }
@@ -405,6 +401,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
 
   .hero { grid-template-columns: 1fr; }
   .hero-img { order: -1; height: 52vw; max-height: 320px; min-height: 200px; }
+  .hero-img.carousel { height: auto; aspect-ratio: 4 / 3; max-height: 70vh; }
   .hero h1 { max-width: none; }
 
   .contact-grid, .page-cols { grid-template-columns: 1fr; }

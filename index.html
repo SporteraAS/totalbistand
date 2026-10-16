@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/style.css?v=13" />
+<link rel="stylesheet" href="assets/style.css?v=14" />
 </head>
 <body>
 
@@ -90,20 +90,8 @@
   <a href="#kontakt" class="m-cta">Kontakt oss</a>
 </div>
 
-<!-- BILDEKARUSELL -->
-<section class="carousel" aria-roledescription="karusell" aria-label="Bilder fra TotalBistand">
-  <div class="car-track">
-    <figure class="car-slide active"><img src="bilder/karusell-vindu.jpg" alt="To medarbeidere fra TotalBistand vasker store vinduer på et butikklokale" width="1600" height="726" fetchpriority="high" /></figure>
-    <figure class="car-slide"><img src="bilder/karusell-hus.jpg" alt="Medarbeidere fra TotalBistand vasker vinduer på et rødt bolighus" width="1600" height="726" loading="lazy" /></figure>
-    <figure class="car-slide"><img src="bilder/karusell-restaurant.jpg" alt="Medarbeidere fra TotalBistand vasker gulv og bord i en restaurant" width="1448" height="1086" loading="lazy" /></figure>
-  </div>
-  <button class="car-btn car-prev" aria-label="Forrige bilde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-  <button class="car-btn car-next" aria-label="Neste bilde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
-  <div class="car-dots"></div>
-</section>
-
-<!-- HERO -->
-<header class="hero hero-text">
+<!-- HERO MED BILDEKARUSELL -->
+<header class="hero">
   <div class="hero-copy">
     <p class="eyebrow">Renhold for private og næringsliv</p>
     <h1>Rene lokaler,<br /><span class="accent">hver dag</span></h1>
@@ -118,6 +106,16 @@
         994 75 001
       </a>
     </div>
+  </div>
+  <div class="hero-img carousel" aria-roledescription="karusell" aria-label="Bilder fra TotalBistand">
+    <div class="car-track">
+      <figure class="car-slide active"><img src="bilder/karusell-vindu.jpg?v=2" alt="To medarbeidere fra TotalBistand vasker store vinduer på et butikklokale" width="884" height="726" fetchpriority="high" /></figure>
+      <figure class="car-slide"><img src="bilder/karusell-hus.jpg?v=2" alt="Medarbeidere fra TotalBistand vasker vinduer på et rødt bolighus" width="884" height="726" loading="lazy" /></figure>
+      <figure class="car-slide"><img class="pos-hoyre" src="bilder/karusell-restaurant.jpg" alt="Medarbeidere fra TotalBistand vasker gulv og bord i en restaurant" width="1448" height="1086" loading="lazy" /></figure>
+    </div>
+    <button class="car-btn car-prev" aria-label="Forrige bilde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="car-btn car-next" aria-label="Neste bilde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="car-dots"></div>
   </div>
 </header>
 
@@ -380,6 +378,6 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="assets/site.js?v=13" defer></script>
+<script src="assets/site.js?v=14" defer></script>
 </body>
 </html>
