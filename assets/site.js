@@ -131,7 +131,7 @@
       }
       function restart() {
         clearInterval(timer);
-        if (!reduce) timer = setInterval(function () { show(cur + 1); }, 6000);
+        if (!reduce) timer = setInterval(function () { show(cur + 1); }, 4000);
       }
       car.querySelector('.car-prev').addEventListener('click', function () { show(cur - 1); restart(); });
       car.querySelector('.car-next').addEventListener('click', function () { show(cur + 1); restart(); });
