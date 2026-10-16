@@ -105,6 +105,51 @@
       });
     }
 
+    /* --- Bildekarusell paa forsiden --- */
+    document.querySelectorAll('.carousel').forEach(function (car) {
+      var slides = car.querySelectorAll('.car-slide');
+      var dotsWrap = car.querySelector('.car-dots');
+      if (slides.length < 2) return;
+      var cur = 0, timer = null;
+      var dots = Array.prototype.map.call(slides, function (s, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Vis bilde ' + (i + 1));
+        b.addEventListener('click', function () { show(i); restart(); });
+        dotsWrap.appendChild(b);
+        return b;
+      });
+      function show(i) {
+        cur = (i + slides.length) % slides.length;
+        slides.forEach(function (s, j) {
+          s.classList.toggle('active', j === cur);
+          s.setAttribute('aria-hidden', String(j !== cur));
+          // Last neste bilde i forkant saa overgangen blir jevn
+          if (j === (cur + 1) % slides.length) s.querySelector('img').loading = 'eager';
+        });
+        dots.forEach(function (d, j) { d.setAttribute('aria-current', String(j === cur)); });
+      }
+      function restart() {
+        clearInterval(timer);
+        if (!reduce) timer = setInterval(function () { show(cur + 1); }, 6000);
+      }
+      car.querySelector('.car-prev').addEventListener('click', function () { show(cur - 1); restart(); });
+      car.querySelector('.car-next').addEventListener('click', function () { show(cur + 1); restart(); });
+      car.addEventListener('mouseenter', function () { clearInterval(timer); });
+      car.addEventListener('mouseleave', restart);
+      // Sveip paa mobil
+      var x0 = null;
+      car.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      car.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) { show(cur + (dx < 0 ? 1 : -1)); restart(); }
+        x0 = null;
+      });
+      show(0);
+      restart();
+    });
+
     /* --- Reveal ved scroll --- */
     var revealEls = document.querySelectorAll('.reveal');
     if (reduce || !('IntersectionObserver' in window)) {
