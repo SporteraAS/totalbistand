@@ -222,6 +222,16 @@ html:not(.js) .car-btn, html:not(.js) .car-dots { display: none; }
 .seg:hover { background: var(--white); }
 .seg svg { width: 26px; height: 26px; color: var(--teal); flex-shrink: 0; }
 .seg span { font-size: .86rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+.seg-wide { grid-column: span 2; }
+
+/* ---------- Sertifiseringer ---------- */
+.sertifiseringer { background: var(--white); border-top: 1px solid var(--border); padding-block: clamp(2.5rem, 5vw, 3.5rem); }
+.sert-grid { display: flex; justify-content: center; align-items: stretch; gap: clamp(1rem, 3vw, 2rem); flex-wrap: wrap; margin-top: 1.4rem; }
+.sert-card { flex: 0 1 300px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.6rem 1.5rem 1.2rem; border: 1px solid var(--border); border-radius: var(--r); background: var(--white); }
+.sert-stack { display: flex; flex-direction: column; align-items: center; gap: 1rem; flex: 1; justify-content: center; }
+.sert-stack img { width: 170px; height: auto; }
+.sert-gp { width: 96px; height: 96px; flex: none; margin-block: auto; }
+.sert-card p { font-size: .8rem; color: var(--muted); text-align: center; }
 
 /* ---------- CTA-banner ---------- */
 .cta-band { background: var(--slate); color: #fff; }
@@ -383,10 +393,7 @@ html.js .reveal.d3 { transition-delay: .24s; }
 /* ==========================================================================
    Responsivt
    ========================================================================== */
-.seg-grid.seg-5 { grid-template-columns: repeat(5, 1fr); }
-
 @media (max-width: 1024px) {
-  .seg-grid.seg-5,
   .seg-grid { grid-template-columns: repeat(2, 1fr); }
   .svc-grid { grid-template-columns: repeat(2, 1fr); }
   .steps, .steps-4 { grid-template-columns: repeat(3, 1fr); row-gap: 1.8rem; }
